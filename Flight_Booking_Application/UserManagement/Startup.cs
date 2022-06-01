@@ -74,7 +74,7 @@ namespace UserManagement
             //app.UseStaticFiles();
             //app.UseCookiePolicy();
             //jwt start
-            app.UseAuthentication() 
+            app.UseAuthentication();
            // app.UseAuthorization();
            
             //jwt end
