@@ -1,0 +1,158 @@
+{
+  "Reroutes": [
+    {
+      "DownstreamPathTemplate": "api/airline/getAllAirline",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 5000,
+      "UPstreamPathTemplate": "/getAllAirline",
+      "UpstreamMethod": "[Get]"
+    },
+    {
+      "DownstreamPathTemplate": "api/airline/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 5000,
+      "UPstreamPathTemplate": "/getAirlinebyId/{id}",
+      "UpstreamMethod": "[Get]"
+    },
+    {
+      "DownstreamPathTemplate": "api/airline/insertAirline",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 5000,
+      "UPstreamPathTemplate": "/insertAirline",
+      "UpstreamMethod": "[Post]"
+    },
+    {
+      "DownstreamPathTemplate": "api/airline/blockAirline",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 5000,
+      "UPstreamPathTemplate": "/blockAirline",
+      "UpstreamMethod": "[Put]"
+    },
+    {
+      "DownstreamPathTemplate": "api/inventory/getAllInventory",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 5000,
+      "UPstreamPathTemplate": "/getAllInventory",
+      "UpstreamMethod": "[Get]"
+    },
+    {
+      "DownstreamPathTemplate": "api/inventory/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 5000,
+      "UPstreamPathTemplate": "/getInventorybyId/{id}",
+      "UpstreamMethod": "[Get]"
+    },
+    {
+      "DownstreamPathTemplate": "api/inventory/insertInventory",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 5000,
+      "UPstreamPathTemplate": "/insertInventory",
+      "UpstreamMethod": "[Post]"
+    },
+    //{
+    //  "DownstreamPathTemplate": "api/inventory/{airlineId}/{flightNumber}/{instrumentUsed}",
+    //  "DownstreamScheme": "http",
+    //  "DownstreamHost": "localhost",
+    //  "DownstreamPort": 5000,
+    //  "UPstreamPathTemplate": "/seachAirline/{airlineId}/{flightNumber}/{instrumentUsed}",
+    //  "UpstreamMethod": "[Get]"
+    //},
+    {
+      "DownstreamPathTemplate": "api/user/getAllUser",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 6000,
+      "UPstreamPathTemplate": "/getAllUser",
+      "UpstreamMethod": "[Get]"
+    },
+    {
+      "DownstreamPathTemplate": "api/user/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 6000,
+      "UPstreamPathTemplate": "/getUserByid/{id}",
+      "UpstreamMethod": "[Get]"
+    },
+    {
+      "DownstreamPathTemplate": "api/user/{username}/{password}",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 6000,
+      "UPstreamPathTemplate": "/userLogin/{username}/{password}",
+      "UpstreamMethod": "[Get]"
+    },
+
+
+    {
+      "DownstreamPathTemplate": "api/user/registerUser",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 6000,
+      "UPstreamPathTemplate": "/registerUser",
+      "UpstreamMethod": "[Post]"
+    },
+    {
+      "DownstreamPathTemplate": "api/login",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 6000,
+      "UPstreamPathTemplate": "/loginUser",
+      "UpstreamMethod": "[Post]"
+    },
+    {
+      "DownstreamPathTemplate": "api/userBookFlight/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 9000,
+      "UPstreamPathTemplate": "/getBookingInfoByPnr/{id}",
+      "UpstreamMethod": "[Get]"
+    },
+    {
+      "DownstreamPathTemplate": "api/userBookFlight/bookFlight",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 9000,
+      "UPstreamPathTemplate": "/bookFlight",
+      "UpstreamMethod": "[Post]"
+    },
+
+    {
+      "DownstreamPathTemplate": "api/userBookFlight/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 9000,
+      "UPstreamPathTemplate": "/cancelBooking/{id}",
+      "UpstreamMethod": "[Delete]"
+    },
+    {
+      "DownstreamPathTemplate": "api/airline/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 5000,
+      "UPstreamPathTemplate": "/deleteAirline/{id}",
+      "UpstreamMethod": "[Delete]"
+    },
+    {
+      "DownstreamPathTemplate": "api/searchFlight",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 1234,
+      "UPstreamPathTemplate": "/searchFlight",
+      "UpstreamMethod": "[Get]"
+    }
+  ],
+    
+   
+   
+  "GlobalConfiguration": {
+    "ResquesIdKey": "OcRequestId",
+    "AdministrationPath": "/administration"
+  }
+}
