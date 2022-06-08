@@ -21,6 +21,7 @@ namespace FlightBookingApplicationGateway
             var builder = new Microsoft.Extensions.Configuration.ConfigurationBuilder();
             builder.SetBasePath(env.ContentRootPath)
                 .AddJsonFile("configuration.json", optional: false, reloadOnChange: true);
+            
             Configuration = builder.Build();
 
         }

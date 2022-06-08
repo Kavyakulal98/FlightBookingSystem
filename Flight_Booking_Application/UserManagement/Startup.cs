@@ -24,7 +24,7 @@ namespace UserManagement
             Configuration = configuration;
         }
 
-
+       public string MyAllowSpecificOrigins;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -41,6 +41,19 @@ namespace UserManagement
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             // services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
             services.AddScoped<IUserRepository, SQLUserRepository>();
+            MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  policy =>
+                                  {
+                                      policy.WithOrigins("")
+                                      .AllowAnyOrigin()
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod();
+
+                                  });
+            });
             //start jwt auth
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
@@ -76,8 +89,8 @@ namespace UserManagement
             //app.UseCookiePolicy();
             //jwt start
             app.UseAuthentication();
-           // app.UseAuthorization();
-           
+            // app.UseAuthorization();
+            app.UseCors(MyAllowSpecificOrigins);
             //jwt end
             app.Run(async (context) =>
             {

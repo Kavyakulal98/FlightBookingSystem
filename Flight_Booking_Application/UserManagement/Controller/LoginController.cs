@@ -28,18 +28,36 @@ namespace UserManagement.Controller
         }
         //jwt start
         [HttpPost]
-        public async void Post([FromBody] User userdetail)
+        public async Task<IActionResult> Post([FromBody] User _userData)
         {
-            await generateToken(userdetail);
-        }
-        public async Task<IActionResult> generateToken(User _userData)
-        {
+            //Dictionary<string, string> response = new Dictionary<string, string>();
             if (_userData != null && _userData.UserName != null && _userData.Password != null)
             {
                 User loggedUser = await user.Login(_userData.UserName, _userData.Password);
-
                 if (loggedUser != null)
                 {
+                    return Ok(new { response=generateToken(loggedUser),success=1 });
+                   
+                }
+                else
+                {
+                    return BadRequest(new {  success = 0});
+                }
+            }
+            else
+            {
+                return BadRequest(new { success = 0 });
+            }
+        
+        }
+        public  string generateToken(User loggedUser)
+        {
+            //if (_userData != null && _userData.UserName != null && _userData.Password != null)
+            //{
+            //    User loggedUser = await user.Login(_userData.UserName, _userData.Password);
+
+                //if (loggedUser != null)
+                //{
                     //create claims details based on the user information
                     var claims = new[] {
                         new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
@@ -59,33 +77,33 @@ namespace UserManagement.Controller
                         claims,
                         expires: DateTime.UtcNow.AddMinutes(10),
                         signingCredentials: signIn);
+            return new JwtSecurityTokenHandler().WriteToken(token);
+            //return Ok(new JwtSecurityTokenHandler().WriteToken(token));
+            //}
+            //else
+            //{
+            //    return BadRequest("Invalid credentials");
+            //}
+            //}
+            //else
+            //{
+            //    return BadRequest();
+            //}
+            //}
+            //jwt end
 
-                    return Ok(new JwtSecurityTokenHandler().WriteToken(token));
-                }
-                else
-                {
-                    return BadRequest("Invalid credentials");
-                }
-            }
-            else
-            {
-                return BadRequest();
-            }
+            //[HttpGet("{username}/{password}")]
+            //public IActionResult Get(string username, string password)
+            //{
+            //    UserDetails loggedUser = user.Login(username, password);
+            //    if (loggedUser == null)
+            //    {
+            //        return NotFound("UserDetails does not exist.Please Register");
+            //    }
+            //    else
+            //    {
+            //        return Ok(loggedUser);
+            //    }
         }
-        //jwt end
-
-        //[HttpGet("{username}/{password}")]
-        //public IActionResult Get(string username, string password)
-        //{
-        //    UserDetails loggedUser = user.Login(username, password);
-        //    if (loggedUser == null)
-        //    {
-        //        return NotFound("UserDetails does not exist.Please Register");
-        //    }
-        //    else
-        //    {
-        //        return Ok(loggedUser);
-        //    }
-        //}
     }
 }

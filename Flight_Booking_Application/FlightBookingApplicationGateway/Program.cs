@@ -26,12 +26,23 @@ namespace FlightBookingApplicationGateway
         {
             IWebHostBuilder builder = new WebHostBuilder();
             builder.ConfigureServices(s => { s.AddSingleton(builder); });
+            //var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+            //builder.Add .AddCors(options =>
+            //{
+            //    options.AddPolicy(name: MyAllowSpecificOrigins,
+            //                      policy =>
+            //                      {
+            //                          policy.WithOrigins(";
+
+            //                      });
+            //});
 
             builder.UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
                 .UseUrls("http://localhost:7000");
             var host = builder.Build();
+
             host.Run();
 
         }
