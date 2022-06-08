@@ -1,0 +1,5 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Flight_Booking_Application/UserManagement/obj/Debug/netcoreapp2.1

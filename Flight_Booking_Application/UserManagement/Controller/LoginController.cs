@@ -28,7 +28,11 @@ namespace UserManagement.Controller
         }
         //jwt start
         [HttpPost]
-        public async Task<IActionResult> Post(User _userData)
+        public async void Post([FromBody] User userdetail)
+        {
+            await generateToken(userdetail);
+        }
+        public async Task<IActionResult> generateToken(User _userData)
         {
             if (_userData != null && _userData.UserName != null && _userData.Password != null)
             {
@@ -73,10 +77,10 @@ namespace UserManagement.Controller
         //[HttpGet("{username}/{password}")]
         //public IActionResult Get(string username, string password)
         //{
-        //    User loggedUser = user.Login(username, password);
+        //    UserDetails loggedUser = user.Login(username, password);
         //    if (loggedUser == null)
         //    {
-        //        return NotFound("User does not exist.Please Register");
+        //        return NotFound("UserDetails does not exist.Please Register");
         //    }
         //    else
         //    {

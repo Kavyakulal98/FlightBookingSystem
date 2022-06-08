@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+//using UserFlightBooking.Model;
 
 namespace ManageAirliness.Model
 {
@@ -22,6 +23,7 @@ namespace ManageAirliness.Model
         public int TotalNonBusinessClassSeats { get; set; }
         public int NoOfRows { get; set; }
         public string Meal { get; set; }
+       // public IEnumerable<FlightBooking> FlightBookings { get; set; }
         //public string Oneway { get; set; }
         //public string Roundway { get; set; }
     }

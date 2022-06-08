@@ -19,12 +19,7 @@ namespace UserFlightBooking.Controller
         {
             flights = _flights;
         }
-        // GET: api/<UserBookFlightController>
-        //[HttpGet]
-        //public IEnumerable<string> Get(id)
-        //{
-        //    return flights.GetBookingInfoByPnr(id)
-        //}
+        
 
         // GET api/<UserBookFlightController>/5
         [HttpGet("{id}")]
@@ -32,7 +27,12 @@ namespace UserFlightBooking.Controller
         {
             return flights.GetBookingInfoByPnr(id);
         }
-
+        //[HttpGet("{id}/{value}")]
+        //public IEnumerable<FlightBooking> Get(string id,bool value)
+        //{
+        //    return flights.GetBookingHistoryByEmailId(id,value);
+        //}
+        
         // POST api/<UserBookFlightController>
         [HttpPost]
         [Route("bookFlight")]
@@ -51,9 +51,17 @@ namespace UserFlightBooking.Controller
         // DELETE api/<UserBookFlightController>/5
         [HttpDelete("{id}")]
         //[Route("cancelBooking")]
-        public void Delete(int id)
+        public string Delete(int id)
         {
-            flights.CancelBookingbyPnr(id);
+            bool value = flights.CancelBookingbyPnr(id);
+            if (value)
+            {
+                return "ticket cancelled successfully";
+            }
+            else
+            {
+                return "Cannot cancel ticket";
+            }
         }
     }
 }

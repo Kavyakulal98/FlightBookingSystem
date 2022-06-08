@@ -28,7 +28,7 @@ namespace UserManagement.Repository
         {
             return await context.UserDetails.FirstOrDefaultAsync(u => u.UserName == username && u.Password == password);
         }
-        //public User Login(string username, string password)
+        //public UserDetails Login(string username, string password)
         //{
            
         //        var query = context.UserDetails.Where(a => a.UserName == username && a.Password == password);
@@ -38,7 +38,7 @@ namespace UserManagement.Repository
         //    }
         //    else
         //    {
-        //        return new User();
+        //        return new UserDetails();
         //    }
                 
           

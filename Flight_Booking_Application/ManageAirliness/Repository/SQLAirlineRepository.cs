@@ -59,8 +59,8 @@ namespace ManageAirliness.Repository
         public bool BlockAirlines(Airlines blockedAirline)
         {
             var employee = context.AirlinesDetails.Attach(blockedAirline);
-            context.Entry(blockedAirline).Property(a=>a.IsBlocked).IsModified = true;
-           // employee.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            context.Entry(blockedAirline).Property(a => a.IsBlocked).IsModified = true;
+            // employee.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
             return true;
         }

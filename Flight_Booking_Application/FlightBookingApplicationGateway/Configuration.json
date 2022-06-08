@@ -25,11 +25,11 @@
       "UpstreamMethod": "[Post]"
     },
     {
-      "DownstreamPathTemplate": "api/airline/blockAirline",
+      "DownstreamPathTemplate": "api/airline/",
       "DownstreamScheme": "http",
       "DownstreamHost": "localhost",
       "DownstreamPort": 5000,
-      "UPstreamPathTemplate": "/blockAirline",
+      "UPstreamPathTemplate": "/blockAirline/",
       "UpstreamMethod": "[Put]"
     },
     {
@@ -80,14 +80,14 @@
       "UPstreamPathTemplate": "/getUserByid/{id}",
       "UpstreamMethod": "[Get]"
     },
-    {
-      "DownstreamPathTemplate": "api/user/{username}/{password}",
-      "DownstreamScheme": "http",
-      "DownstreamHost": "localhost",
-      "DownstreamPort": 6000,
-      "UPstreamPathTemplate": "/userLogin/{username}/{password}",
-      "UpstreamMethod": "[Get]"
-    },
+    //{
+    //  "DownstreamPathTemplate": "api/user/{username}/{password}",
+    //  "DownstreamScheme": "http",
+    //  "DownstreamHost": "localhost",
+    //  "DownstreamPort": 6000,
+    //  "UPstreamPathTemplate": "/userLogin/{username}/{password}",
+    //  "UpstreamMethod": "[Get]"
+    //},
 
 
     {
@@ -115,6 +115,14 @@
       "UpstreamMethod": "[Get]"
     },
     {
+      "DownstreamPathTemplate": "api/userBookFlight/{id}/{value}",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "localhost",
+      "DownstreamPort": 9000,
+      "UPstreamPathTemplate": "/getBookinghistoryByEmailId/{id}/{value}",
+      "UpstreamMethod": "[Get]"
+    },
+    {
       "DownstreamPathTemplate": "api/userBookFlight/bookFlight",
       "DownstreamScheme": "http",
       "DownstreamHost": "localhost",
@@ -122,7 +130,6 @@
       "UPstreamPathTemplate": "/bookFlight",
       "UpstreamMethod": "[Post]"
     },
-
     {
       "DownstreamPathTemplate": "api/userBookFlight/{id}",
       "DownstreamScheme": "http",

@@ -12,6 +12,7 @@ using UserManagement.Repository;
 
 namespace UserManagement.Controller
 {
+    [Authorize(AuthenticationSchemes ="Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -31,14 +32,13 @@ namespace UserManagement.Controller
         }
 
         // GET api/<UserController>/5
-        [Authorize]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             User presentUser = user.GetUserbyUserId(id);
             if(presentUser == null)
             {
-                return NotFound("User does not exist");
+                return NotFound("UserDetails does not exist");
             }
             else
             {
@@ -50,10 +50,10 @@ namespace UserManagement.Controller
         //[HttpGet("{username}/{password}")]
         //public IActionResult Get(string username, string password)
         //{
-        //    User loggedUser = user.Login(username, password);
+        //    UserDetails loggedUser = user.Login(username, password);
         //    if (loggedUser == null)
         //    {
-        //        return NotFound("User does not exist.Please Register");
+        //        return NotFound("UserDetails does not exist.Please Register");
         //    }
         //    else
         //    {
@@ -62,11 +62,12 @@ namespace UserManagement.Controller
       //  }
 
         // POST api/<UserController>
+        [AllowAnonymous]
         [HttpPost]
         [Route("registerUser")]
-        public void Post([FromBody] User userdetails)
+        public void Post([FromBody] User userdetail)
         {
-            user.RegisterUser(userdetails);
+            user.RegisterUser(userdetail);
         }
 
         // PUT api/<UserController>/5

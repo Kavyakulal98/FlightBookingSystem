@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UserFlightBooking.Repository;
 
+
 namespace UserFlightBooking
 {
     public class Startup
@@ -34,11 +35,11 @@ namespace UserFlightBooking
             //});
 
             services.AddDbContextPool<FlightBookAppDBContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("AirlineDBConnection")));
+                options => options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("AirlineDBConnection")));
             services.AddMvc();
             // services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
             services.AddScoped<IFlightBookingRepository, SQLFlightBookingRepository>();
-           
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

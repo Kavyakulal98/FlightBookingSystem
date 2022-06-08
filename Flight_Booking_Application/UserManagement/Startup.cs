@@ -38,12 +38,13 @@ namespace UserManagement
 
             services.AddDbContextPool<UserAppDBContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("AirlineDBConnection")));
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             // services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
             services.AddScoped<IUserRepository, SQLUserRepository>();
             //start jwt auth
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-            {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
                 options.RequireHttpsMetadata = false;
                 options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters()

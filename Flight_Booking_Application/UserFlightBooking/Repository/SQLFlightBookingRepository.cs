@@ -1,33 +1,42 @@
-﻿using System;
+﻿//using ManageAirliness.Model;
+//using ManageAirliness.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UserFlightBooking.Model;
+//using UserManagement.Repository;
+//using UserManagement.Model;
 
 namespace UserFlightBooking.Repository
 {
     public class SQLFlightBookingRepository : IFlightBookingRepository
     {
         private readonly FlightBookAppDBContext context;
-
+        //private readonly UserAppDBContext usercontext;
+       // private readonly AppDBContext airlinecontext; 
         public SQLFlightBookingRepository(FlightBookAppDBContext _context)
         {
             this.context = _context;
+            // this.airlinecontext = _airlinecontext;, AppDBContext _airlinecontext
+            //this.usercontext = _usercontext; , UserAppDBContext _usercontext
         }
+
         public FlightBooking BookFlightbyUser(FlightBooking bookingDetails)
         {
             
             context.FlightBookingDetailssql.Add(bookingDetails);
             context.SaveChanges();
-            //IEnumerable<PassengerDetails> passDetails;
-            //passDetails = bookingDetails.Passengers;
-            //foreach (var passenger in passDetails)
+           // Inventory bookedInventory = context.Find(bookingDetails.InventoryId);
+            //Inventory invDetails = new Inventory
             //{
-            //    passenger.Id = 0;
-            //    passenger.FlightBookingId = bookingDetails.FlightBookingId;
-            //    context.PassengerDetailssql.Add(passenger);
-            //   context.SaveChanges();
-            //}
+            //    InventoryId = bookingDetails.InventoryId,
+            //    TotalNonBusinessClassSeats = (bookedInventory.TotalNonBusinessClassSeats - bookingDetails.NoofSelctedBusinessclassSeats),
+            //    TotalBusinessClassSeats = (bookedInventory.TotalBusinessClassSeats - bookingDetails.NoofSelctedBusinessclassSeats),
+            //};
+            //context.InventoryofAirlines.Attach(invDetails);
+            //context.Entry(invDetails).Property(a => a.TotalBusinessClassSeats).IsModified = true;
+            //context.Entry(invDetails).Property(a => a.TotalNonBusinessClassSeats).IsModified = true;
             //context.SaveChanges();
             return bookingDetails;
         }
@@ -35,16 +44,19 @@ namespace UserFlightBooking.Repository
         public bool CancelBookingbyPnr(int pnrId)
         {
             FlightBooking flight = context.FlightBookingDetailssql.Find(pnrId);
-            PassengerDetails passenger = context.PassengerDetailssql.Find(pnrId);
-            if (flight != null)
+            //PassengerDetails passenger = context.PassengerDetailssql.Find(pnrId);
+            DateTime currentDate = DateTime.Now;
+            DateTime bookedDate=flight.BookedDate;
+            TimeSpan timeSpan = currentDate - bookedDate;
+            if (flight != null && timeSpan.TotalHours <=24)
             {
                 context.FlightBookingDetailssql.Remove(flight);
                 context.SaveChanges();
-                if (passenger != null)
-                {
-                    context.PassengerDetailssql.Remove(passenger);
-                    context.SaveChanges();
-                }
+                //if (passenger != null)
+                //{
+                //    context.PassengerDetailssql.Remove(passenger);
+                //    context.SaveChanges();
+                //}
                 return true;
             }
             else
@@ -53,21 +65,20 @@ namespace UserFlightBooking.Repository
             }
         }
 
-        //public IEnumerable<FlightBooking> GetBookingHistoryByUserId(int userId)
+        //public IEnumerable<FlightBooking> GetBookingHistoryByEmailId(string emailId,bool value)
         //{
-        //    throw new NotImplementedException();
+        //    int uid = usercontext.User.Where(a => a.EmailAddress == emailId).FirstOrDefault().UserId; ;
+        //    IEnumerable<FlightBooking>  flightHistory = context.FlightBookingDetailssql.Where(a => a.UserId == uid);
+        //        return flightHistory;
         //}
+
 
         public FlightBooking GetBookingInfoByPnr(int pnrId)
         {
             FlightBooking flight = context.FlightBookingDetailssql.Find(pnrId);
-           // IEnumerable<PassengerDetails> passDetails;
-           // passDetails = context.PassengerDetailssql.Where(a => a.FlightBookingId == pnrId);
-            //foreach (var passenger in passDetails)
-            //{
-               // flight.Passengers = passDetails;
-            //}
-                return flight;
+           //flight.Passengers = context.PassengerDetailssql.Where(a=>a.FlightBookingId == pnrId).ToList();
+
+            return flight;
         }
     }
 }
