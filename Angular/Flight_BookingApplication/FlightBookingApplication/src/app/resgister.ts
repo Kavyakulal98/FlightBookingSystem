@@ -4,4 +4,5 @@ export class Resgister {
   ContactNumber!: string;
   Password!: string;
   Age!: string;
+  Role!: string;
 }

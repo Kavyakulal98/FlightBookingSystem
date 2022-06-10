@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FlightuserComponent } from './flightuser/flightuser.component';
 import { ResgisterComponent } from './flightuser/resgister/resgister.component';
 import { LoginComponent } from './flightuser/login/login.component';
+import { AirlineComponent } from './flightuser/airline/airline.component';
+import { AdmindashoboardComponent } from './flightuser/admindashoboard/admindashoboard.component';
 
    
 export const routes: Routes = [    
@@ -31,7 +33,21 @@ export const routes: Routes = [
     data: {    
       title: 'Add User Page'    
     }    
-  },    
+  },
+  {    
+    path: 'flightuser/airline',    
+    component: AirlineComponent,    
+    data: {    
+      title: 'Add Airline Page'    
+    }    
+  }, 
+  {    
+    path: 'flightuser/admindashoboard',    
+    component: AdmindashoboardComponent,    
+    data: {    
+      title: 'admin Page'    
+    }    
+  },     
 ];    
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

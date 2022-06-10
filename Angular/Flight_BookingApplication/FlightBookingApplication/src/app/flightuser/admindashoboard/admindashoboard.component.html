@@ -1,0 +1,93 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+    
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navbar brand -->
+      
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['../admindashoboard']">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['../airline']">Airline</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+
+<div><br><br></div>
+      <div class="row">
+        <div class="col-sm-3" *ngFor="let airline of listAirliness">
+      <div class="card-group">
+               
+        <div class="card bg-dark text-white" >
+          <!-- <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img-top" alt="Los Angeles Skyscrapers"/>
+          <div class="card-body"> -->
+            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img" alt="Stony Beach"/>
+  <div class="card-img-overlay">
+            <h5 class="card-title">{{airline.airlineName}}</h5>
+            <p class="card-text">
+               
+              {{airline.airlineAddress}},{{airline.airlineContactNumber}}
+            </p>
+          </div>
+          <div class="card-footer">
+            <!-- <small class="text-muted"> -->
+              <button type="submit" class="btn btn-block btn-success" (click)="BlockAirline(airline)">Block Airline</button>
+           &nbsp;  <button type="submit" class="btn btn-block btn-success" >Add inventory</button>
+              <!-- </small> -->
+          </div>
+        </div>
+      
+      
+        </div><div><br></div>
+      </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- <tbody>
+        <tr *ngFor="let airline of listAirliness">
+          <td>{{airline.airlinesId}}</td>
+          <td>{{airline.airlineName}}</td>
+          <td>{{airline.airlineContactNumber}}</td>
+          <td>{{airline.airlineAddress}}</td>
+          <td>{{airline.isBlocked}}</td>
+          <td><button type="submit" class="btn btn-block btn-success" (click)="BlockAirline(airline)">Block Airline</button>  </td> -->
+          <!-- <td> <button *ngif="airline.isBlocked == false; else view" type="submit" class="btn btn-block btn-success" (click)="BlockAirline(airline)">Block Airline</button> 
+          <ng-template #view>
+            <button type="submit" class="btn btn-block btn-success" (click)="BlockAirline(airline)">UnBlock Airline</button> 
+          </ng-template>
+          </td> -->
+          <!-- <td> <button type="submit" class="btn btn-block btn-success" >Add inventory</button>  </td> -->
+
+        <!-- </tr>
+      </tbody>
+    </table> -->
+   
+  <!-- </div> -->

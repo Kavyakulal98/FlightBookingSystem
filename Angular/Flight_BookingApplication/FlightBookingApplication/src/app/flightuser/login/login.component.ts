@@ -15,27 +15,15 @@ export class LoginComponent implements OnInit {
     
     
   ngOnInit() {    
-    sessionStorage.removeItem('UserName');    
-    sessionStorage.clear();    
+    // sessionStorage.removeItem('UserName');    
+    // sessionStorage.clear();    
   }    
   login(){    
     debugger;    
-    this.LoginService.Login(this.model).subscribe(    
-      data => {    
-        debugger; 
-        console.log(data)  ;
-        const token = data.response;
-        // if(data != null)    
-        // {       
-        //   this.router.navigate(['/Flightuser']);    
-        //   debugger;    
-        // }    
-        // else{    
-        //   this.errorMessage = data.Message;    
-        // }    
-      },    
-      error => {    
-        this.errorMessage = error.message;    
-      });    
+    this.LoginService.Login(this.model).subscribe((data) => { 
+      debugger; console.log(data);
+      this.router.navigate(['/flightuser/admindashoboard']); 
+      // localStorage.key = data.response;
+    });    
   };    
  }     

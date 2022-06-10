@@ -1,0 +1,32 @@
+<div class="container" style="padding-top:40px;">  
+    <div class="row">  
+      <div class="col-md-6 mx-auto">  
+        <div class="card mx-4">  
+          <div class="card-body p-4">  
+            <form #form="ngForm" (ngSubmit)="onAirlineFormsubmit(form)"> 
+                <input type="hidden" name="AirlinesId" value="service.AirlineForm.AirlinesId" required> 
+              <h1 style="text-align:center">Add Airline</h1>  
+            
+              <div class="input-group mb-3">  
+               
+                <input type="text" class="form-control" placeholder="Airline name" 
+                name="AirlineName" #AirlineName="ngModel" [(ngModel)]="service.AirlineForm.AirlineName" required>  
+              </div>  
+              <div class="input-group mb-3">  
+               
+                <input type="text" class="form-control" placeholder="Contact Number" 
+                name="AirlineContactNumber" #AirlineContactNumber="ngModel" [(ngModel)]="service.AirlineForm.AirlineContactNumber" required>  
+              </div>   
+              <div class="input-group mb-4">  
+               
+                <input type="text" class="form-control" placeholder="Airline Address" 
+                name="AirlineAddress" #AirlineAddress="ngModel" [(ngModel)]="service.AirlineForm.AirlineAddress" required>  
+              </div> 
+
+              <button type="submit" class="btn btn-block btn-success" [disabled]="form.invalid">Add</button>  
+            </form>  
+          </div>  
+        </div>  
+      </div>  
+    </div>  
+  </div>  
