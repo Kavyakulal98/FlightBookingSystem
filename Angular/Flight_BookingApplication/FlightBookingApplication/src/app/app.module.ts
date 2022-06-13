@@ -13,6 +13,7 @@ import { AirlineComponent } from './flightuser/airline/airline.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { InventoryComponent } from './flightuser/inventory/inventory.component';
+import { InventorydashboardComponent } from './flightuser/inventorydashboard/inventorydashboard.component';
 
 // export function tokenGetter() { 
 //   return localStorage.getItem("jwt"); 
@@ -25,7 +26,8 @@ import { InventoryComponent } from './flightuser/inventory/inventory.component';
     LoginComponent,
     AdmindashoboardComponent,
     AirlineComponent,
-    InventoryComponent
+    InventoryComponent,
+    InventorydashboardComponent
   ],
   imports: [
     BrowserModule,

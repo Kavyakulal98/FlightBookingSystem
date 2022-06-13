@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+    
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navbar brand -->
+        <input type="hidden" name="AirlinesId" value="{{airlinesId}}" required> 
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/flightuser/admindashoboard']">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/flightuser/inventorydashboard']">Airline</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/flightuser/inventory',airlinesId]">Inventory</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+
+<div><br><br>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Inventory Id</th>
+        <th>Airline Id</th>
+        <th>Flight Number</th>
+        <th>Airline Price</th>
+        <th>Total Cost</th>
+        <th>Pickup location</th>
+        <th>Destination</th>
+        <th>Airline Startdate</th>
+        <th>Airline Enddate</th>
+        <th>Instrument Used</th>
+        <th>total BusinessClassvSeats</th>
+        <th>total Non-BusinessClassvSeats</th>
+        <th>NO of rows</th>
+        <th>Meal</th>
+      </tr>
+    </thead>
+  <tbody>
+        <tr *ngFor="let inventory of listInventory">
+          <td>{{inventory.inventoryId}}</td>
+          <td>{{inventory.airlinesId}}</td>
+          <td>{{inventory.flightNumber}}</td>
+          <td>{{inventory.airlinePrice}}</td>
+          <td>{{inventory.airlineTotalCost}}</td>
+          <td>{{inventory.fromPlace}}</td>
+          <td>{{inventory.toPlace}}</td>
+          <td>{{inventory.airlineStartDate}}</td>
+          <td>{{inventory.airlineEndDate}}</td>
+          <td>{{inventory.instrumentUsed}}</td>
+          <td>{{inventory.totalBusinessClassSeats}}</td>
+          <td>{{inventory.totalNonBusinessClassSeats}}</td>
+          <td>{{inventory.noOfRows}}</td>
+          <td>{{inventory.meal}}</td>
+          <!-- <td><button type="submit" class="btn btn-block btn-success" (click)="BlockAirline(airline)">Block Airline</button>  </td> --> 
+          <!-- <td> <button *ngif="airline.isBlocked == false; else view" type="submit" class="btn btn-block btn-success" (click)="BlockAirline(airline)">Block Airline</button> 
+          <ng-template #view>
+            <button type="submit" class="btn btn-block btn-success" (click)="BlockAirline(airline)">UnBlock Airline</button> 
+          </ng-template>
+          </td> -->
+          <!-- <td> <button type="submit" class="btn btn-block btn-success" >Add inventory</button>  </td> -->
+
+        </tr>
+      </tbody>
+    </table>

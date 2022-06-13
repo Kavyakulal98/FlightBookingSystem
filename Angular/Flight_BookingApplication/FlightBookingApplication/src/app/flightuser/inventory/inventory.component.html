@@ -1,1 +1,80 @@
-<p>inventory works!</p>
+<div class="container" style="padding-top:40px;">  
+    <div class="row">  
+      <div class="col-md-6 mx-auto">  
+        <div class="card mx-4">  
+          <div class="card-body p-4">  
+            <form #form="ngForm" (ngSubmit)="onInventoryFormsubmit(form)"> 
+                <input type="hidden" name="AirlinesId" value="service.inventoryVariable.AirlinesId" required> 
+                <input type="hidden" name="InventoryId" value="service.inventoryVariable.InventoryId" required> 
+              <h1 style="text-align:center">Add Inventory</h1>  
+            
+              <div class="input-group mb-3">  
+               
+                <input type="text" class="form-control" placeholder="Flight Number" 
+                name="FlightNumber" #FlightNumber="ngModel" [(ngModel)]="service.inventoryVariable.FlightNumber" required>  
+              </div>  
+              <div class="input-group mb-3">  
+               
+                <input type="number" class="form-control" placeholder="Airline Price" 
+                name="AirlinePrice" #AirlinePrice="ngModel" [(ngModel)]="service.inventoryVariable.AirlinePrice" required>  
+              </div>  
+              <div class="input-group mb-3">  
+               
+                <input type="number" class="form-control" placeholder="Airline Total Cost" 
+                name="AirlineTotalCost" #AirlineTotalCost="ngModel" [(ngModel)]="service.inventoryVariable.AirlineTotalCost" required>  
+              </div>  
+              <div class="input-group mb-3">  
+               
+                <input type="text" class="form-control" placeholder="Pickup Location" 
+                name="FromPlace" #FromPlace="ngModel" [(ngModel)]="service.inventoryVariable.FromPlace" required>  
+              </div> 
+              <div class="input-group mb-3">  
+               
+                <input type="text" class="form-control" placeholder="Destination" 
+                name="ToPlace" #ToPlace="ngModel" [(ngModel)]="service.inventoryVariable.ToPlace" required>  
+              </div> 
+              <div class="input-group mb-3">  
+               
+                <input type="datetime" class="form-control" placeholder="Airline StartDate" 
+                name="AirlineStartDate" #AirlineStartDate="ngModel" [(ngModel)]="service.inventoryVariable.AirlineStartDate" required>  
+              </div>     
+              <div class="input-group mb-4">  
+               
+                <input type="datetime" class="form-control" placeholder="Airline EndDate"
+                name="AirlineEndDate" #AirlineEndDate="ngModel" [(ngModel)]="service.inventoryVariable.AirlineEndDate" required>  
+              </div>  
+              <div class="input-group mb-4">  
+               
+                <input type="text" class="form-control" placeholder="Instrument Used" 
+                name="InstrumentUsed" #InstrumentUsed="ngModel" [(ngModel)]="service.inventoryVariable.InstrumentUsed" required>  
+              </div>  
+              <div class="input-group mb-4">  
+               
+                <input type="number" class="form-control" placeholder="TotalBusiness Class Seats" 
+                name="TotalBusinessClassSeats" #TotalBusinessClassSeats="ngModel" [(ngModel)]="service.inventoryVariable.TotalBusinessClassSeats" required>  
+              </div>  
+              <div class="input-group mb-4">  
+               
+                <input type="text" class="form-control" placeholder="Total NonBusiness Class Seats" 
+                name="TotalNonBusinessClassSeats" #TotalNonBusinessClassSeats="ngModel" [(ngModel)]="service.inventoryVariable.TotalNonBusinessClassSeats" required>  
+              </div>  
+              <div class="input-group mb-4">  
+               
+                <input type="number" class="form-control" placeholder="No Of Rows" 
+                name="NoOfRows" #NoOfRows="ngModel" [(ngModel)]="service.inventoryVariable.NoOfRows" required>  
+              </div>  
+              <div class="input-group mb-4">  
+               
+                <input type="text" class="form-control" placeholder="Meal" 
+                name="Meal" #Meal="ngModel" [(ngModel)]="service.inventoryVariable.Meal" required>  
+              </div>  
+              
+
+              <button type="submit" class="btn btn-block btn-success" [disabled]="form.invalid">Add</button>  &nbsp;
+              <button type="submit" class="btn btn-block btn-success" [routerLink]="['/../inventorydashboard']">Cancel</button>  
+            </form>  
+          </div>  
+        </div>  
+      </div>  
+    </div>  
+  </div>  

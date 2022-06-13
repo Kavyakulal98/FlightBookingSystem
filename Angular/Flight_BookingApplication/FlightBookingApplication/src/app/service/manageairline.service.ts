@@ -11,8 +11,6 @@ export class ManageairlineService {
     this.Url = 'http://localhost:7000/';
   }
   AirlineForm: Manageairline = new Manageairline(); 
-  //listAirlines: Manageairline[] = [];
-  //listAirlines: Manageairline[] = [];
   //listAirlines!: Observable<Manageairline[]>;
   AddAirline() {
     debugger
@@ -21,7 +19,7 @@ export class ManageairlineService {
   }
   getAllAirline():Observable<any>{
     debugger
-    return this.http.get(this.Url + 'getAllAirline');   
+     return this.http.get(this.Url + 'getAllAirline');   
   }
   blockAirline(airline:any){
     debugger

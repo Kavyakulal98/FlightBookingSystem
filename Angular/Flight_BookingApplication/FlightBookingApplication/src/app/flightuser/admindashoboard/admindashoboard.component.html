@@ -30,23 +30,29 @@
         <div class="col-sm-3" *ngFor="let airline of listAirliness">
       <div class="card-group">
                
-        <div class="card bg-dark text-white" >
-          <!-- <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-          <div class="card-body"> -->
-            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img" alt="Stony Beach"/>
-  <div class="card-img-overlay">
+        <div class="card " >
+          <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img-top" alt="Los Angeles Skyscrapers"/>
+          <div class="card-body">
+            <!-- <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img" alt="Stony Beach"/>
+  <div class="card-img-overlay"> -->
             <h5 class="card-title">{{airline.airlineName}}</h5>
             <p class="card-text">
                
               {{airline.airlineAddress}},{{airline.airlineContactNumber}}
             </p>
           </div>
-          <div class="card-footer">
+          <!-- <div class="card-footer"> -->
             <!-- <small class="text-muted"> -->
+              <!-- <button type="submit" class="btn btn-block btn-success" (click)="BlockAirline(airline)">Block Airline</button> -->
+            <!-- <div>  -->
+              <button  *ngIf="airline.isBlocked==true ; else elseblock"   type="submit" class="btn btn-block btn-success" (click)="BlockAirline(airline)">UnBlock Airline</button>
+            <!-- </div>  -->
+            <ng-template #elseblock> 
               <button type="submit" class="btn btn-block btn-success" (click)="BlockAirline(airline)">Block Airline</button>
-           &nbsp;  <button type="submit" class="btn btn-block btn-success" >Add inventory</button>
+              </ng-template>
+               &nbsp;  <button type="submit" class="btn btn-block btn-success" [routerLink]="['../inventorydashboard/',airline.airlinesId]">Inventory</button>
               <!-- </small> -->
-          </div>
+          <!-- </div> -->
         </div>
       
       

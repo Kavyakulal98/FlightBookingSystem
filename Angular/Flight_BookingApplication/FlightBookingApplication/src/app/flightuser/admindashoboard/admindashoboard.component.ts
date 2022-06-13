@@ -13,20 +13,33 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable()
 export class AdmindashoboardComponent implements OnInit {
   listAirliness: Array<any>=[];
+  success:any;
+  isblock:any;
+  airlinesId: any;
   constructor(public service:ManageairlineService,private toastr:ToastrService) { }
 
   ngOnInit() {
     debugger
      this.service.getAllAirline().subscribe((data)=>this.listAirliness = data);
+   
   }
   BlockAirline(data:Manageairline){
-    // const airlinevalues = this.AirlineForm.value;
-data.IsBlocked=true;
+this.isblock = data.IsBlocked;
     this.service.blockAirline(data).subscribe(
       (response)=>{
+        this.success =response;
+        if(this.success.apiresponse == true){
+          if(this.isblock == false){
           this.toastr.success("blocked successfully"); 
+          }else{
+            this.toastr.success("Unblocked successfully"); 
+          }
           this.service.getAllAirline().subscribe((data1)=>this.listAirliness = data1);
+      }else{
+        this.toastr.success("Cannot block Airline"); 
+        this.service.getAllAirline().subscribe((data1)=>this.listAirliness = data1);
       }
+    }
     );
    
   }

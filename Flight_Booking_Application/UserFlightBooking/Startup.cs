@@ -1,3 +1,5 @@
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -39,12 +41,15 @@ namespace UserFlightBooking
             services.AddMvc();
             // services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
             services.AddScoped<IFlightBookingRepository, SQLFlightBookingRepository>();
+            services.AddCors();
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCors(Options => Options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
