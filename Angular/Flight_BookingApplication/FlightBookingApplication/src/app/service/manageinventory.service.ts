@@ -22,4 +22,8 @@ export class ManageinventoryService {
     return this.http.get(this.Url + 'getAllInventory/'+inputId+'/'+value);   
   }
 
+  getInventorybyId(id:number):Observable<any>{
+    return this.http.get(this.Url + 'getInventorybyId/'+id); 
+  }
+
 }

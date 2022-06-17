@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+    
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navbar brand -->
+        <!-- <input type="hidden" name="AirlinesId" value="{{airlinesId}}" required>  -->
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/flightuser/userdashboard']">Home</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/flightuser/inventorydashboard']">Airline</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/flightuser/inventory',airlinesId]">Inventory</a>
+          </li> -->
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+
+<div><br><br>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Airline Name</th>
+        <th>Amount Paid</th>
+        <th>Booked Date</th>
+        <!-- <th>Action</th> -->
+        <!-- <th>Meal</th>
+        <th>Passengers</th> -->
+      </tr>
+    </thead>
+  <tbody>
+        <tr *ngFor="let history of historydetails">
+            <!-- <input type="hidden" name="inventoryId" value="{{history.InventoryId}}" required>
+            <input type="hidden" name="flightBookingId" value="{{history.FlightBookingId}}" required>
+            <input type="hidden" name="airlinesId" value="{{history.AirlinesId}}" required>
+            <input type="hidden" name="userId" value="{{history.UserId}}" required>  -->
+            <td> <div *ngFor="let a of airlinedetails">
+            
+              <ng-container *ngIf="a.airlinesId == history.airlinesId">
+                {{a.airlineName}}
+            </ng-container>
+          </div></td>
+            
+            <td>{{history.amountPaid}}</td>
+            <td>{{history.bookedDate}}</td>
+          <!-- <td>{{history.mealOpted}}</td>
+          <td>
+              <tr *ngFor="let passenger of history.passengers">
+                    <td> {{passenger.name}}   </td>&nbsp;
+                    <td> {{passenger.gender}}   </td>&nbsp;
+                    <td> {{passenger.age}}   </td>&nbsp;
+              </tr>
+          </td> -->
+          <td><button type="submit" class="btn btn-block btn-success" (click)="cancelBooking(history.flightBookingId)">Cancel Ticket</button>  &nbsp;  
+          <button type="submit" class="btn btn-block btn-success" [routerLink]="['../../viewbooking',history.flightBookingId,history.airlinesId,history.inventoryId,history.userId]" >View Ticket</button> </td> 
+        </tr>
+          </tbody>
+    </table>

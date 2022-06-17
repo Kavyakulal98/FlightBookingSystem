@@ -14,7 +14,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { InventoryComponent } from './flightuser/inventory/inventory.component';
 import { InventorydashboardComponent } from './flightuser/inventorydashboard/inventorydashboard.component';
-
+import { UserdashboardComponent } from './flightuser/userdashboard/userdashboard.component';
+import { UserbookflightComponent } from './flightuser/userbookflight/userbookflight.component';
+import { authInterceptorProviders } from './flightuser/_helpers/auth.interceptors';
+import { BookinghistoryComponent } from './flightuser/bookinghistory/bookinghistory.component';
+import { ViewbookingComponent } from './flightuser/viewbooking/viewbooking.component';
 // export function tokenGetter() { 
 //   return localStorage.getItem("jwt"); 
 // }
@@ -27,7 +31,11 @@ import { InventorydashboardComponent } from './flightuser/inventorydashboard/inv
     AdmindashoboardComponent,
     AirlineComponent,
     InventoryComponent,
-    InventorydashboardComponent
+    InventorydashboardComponent,
+    UserdashboardComponent,
+    UserbookflightComponent,
+    BookinghistoryComponent,
+    ViewbookingComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +53,7 @@ import { InventorydashboardComponent } from './flightuser/inventorydashboard/inv
     //   }
     // })
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

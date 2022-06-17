@@ -32,7 +32,7 @@ export class InventoryComponent implements OnInit {
          if(this.success.apiresponse == true){
           debugger; 
           this.refreshData(form);
-          this.router.navigate(['flightuser/inventorydashboard/:this.airlinesId']); 
+          this.router.navigate(['flightuser/inventorydashboard/',this.airlinesId]); 
           this.toastr.success("Inventory Added successfully"); 
          }else{
           this.toastr.error("Cannot add Inventory");

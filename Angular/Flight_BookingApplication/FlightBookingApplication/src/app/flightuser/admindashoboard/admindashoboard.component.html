@@ -15,6 +15,9 @@
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['../airline']">Airline</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="Logout()">Log out</a>
+          </li>
         </ul>
         <!-- Left links -->
       </div>
@@ -30,12 +33,15 @@
         <div class="col-sm-3" *ngFor="let airline of listAirliness">
       <div class="card-group">
                
-        <div class="card " >
+        <div class="card">
           <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img-top" alt="Los Angeles Skyscrapers"/>
           <div class="card-body">
             <!-- <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img" alt="Stony Beach"/>
   <div class="card-img-overlay"> -->
+    <!-- <button type="submit" style="float: right;" class="btn btn-block btn-success" [routerLink]="['../inventorydashboard/',airline.airlinesId]">Inventory</button> -->
+      <i class="fa fa-trash fa-1x" style="float: right;"  (click)="deleteAirne(airline.airlinesId)"></i>
             <h5 class="card-title">{{airline.airlineName}}</h5>
+           
             <p class="card-text">
                
               {{airline.airlineAddress}},{{airline.airlineContactNumber}}

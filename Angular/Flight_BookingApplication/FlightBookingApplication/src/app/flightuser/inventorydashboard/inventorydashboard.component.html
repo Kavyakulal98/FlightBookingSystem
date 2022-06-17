@@ -31,33 +31,33 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Inventory Id</th>
-        <th>Airline Id</th>
+        <!-- <th>Inventory Id</th>
+        <th>Airline Id</th> -->
         <th>Flight Number</th>
         <th>Airline Price</th>
         <th>Total Cost</th>
         <th>Pickup location</th>
         <th>Destination</th>
-        <th>Airline Startdate</th>
-        <th>Airline Enddate</th>
+        <th>Airline Start Date</th>
+        <th>Airline End Date</th>
         <th>Instrument Used</th>
-        <th>total BusinessClassvSeats</th>
-        <th>total Non-BusinessClassvSeats</th>
+        <th>Business Class</th>
+        <th>Non-Business Class</th>
         <th>NO of rows</th>
         <th>Meal</th>
       </tr>
     </thead>
   <tbody>
         <tr *ngFor="let inventory of listInventory">
-          <td>{{inventory.inventoryId}}</td>
-          <td>{{inventory.airlinesId}}</td>
+          <!-- <td>{{inventory.inventoryId}}</td>
+          <td>{{inventory.airlinesId}}</td> -->
           <td>{{inventory.flightNumber}}</td>
           <td>{{inventory.airlinePrice}}</td>
           <td>{{inventory.airlineTotalCost}}</td>
           <td>{{inventory.fromPlace}}</td>
           <td>{{inventory.toPlace}}</td>
-          <td>{{inventory.airlineStartDate}}</td>
-          <td>{{inventory.airlineEndDate}}</td>
+          <td>{{inventory.airlineStartDate | date : "d-MM-y"}}</td>
+          <td>{{inventory.airlineEndDate | date : "d-MM-y"}}</td>
           <td>{{inventory.instrumentUsed}}</td>
           <td>{{inventory.totalBusinessClassSeats}}</td>
           <td>{{inventory.totalNonBusinessClassSeats}}</td>

@@ -1,7 +1,8 @@
+// import { passengers } from '../model/managebookflight.model';
 export class Manageinventory {
     InventoryId! : number;
     AirlinesId!:number;
-    FlightNumber:string='';
+    FlightNumber!:number;
     AirlinePrice!:number;
     AirlineTotalCost!:number;
     FromPlace:string='';
@@ -13,4 +14,5 @@ export class Manageinventory {
     TotalNonBusinessClassSeats!:number;
     NoOfRows!:number;
     Meal:string='';
+    
 }

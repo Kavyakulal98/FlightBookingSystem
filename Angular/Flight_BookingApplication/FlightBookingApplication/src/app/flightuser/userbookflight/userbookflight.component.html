@@ -1,0 +1,145 @@
+<div class="container" style="padding-top:40px;">
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <!-- <div class="card mx-4">
+          <div class="card-body p-4">   -->
+      <form #form="ngForm" (ngSubmit)="onbookFlightFormsubmit(form)">
+        <input type="hidden" name="FlightBookingId" [(ngModel)]="service.bookVariable.FlightBookingId"
+          value="service.bookVariable.FlightBookingId" required>
+        <input type="hidden" name="AirlinesId" value="airlinesId" [(ngModel)]="service.bookVariable.AirlinesId"
+          required>
+        <input type="hidden" name="UserId" value="userId" [(ngModel)]="service.bookVariable.UserId" required>
+        <input type="hidden" name="InventoryId" value="inventoryId" [(ngModel)]="service.bookVariable.InventoryId"
+          required>
+        <h3>Add Passengers</h3>
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Seat Number</th>
+              <th>Seat</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let dynamic of dynamicArray; let i = index;">
+              <td (click)="deleteRow(i)">
+                <i class="fa fa-trash fa-2x"></i>
+              </td>
+              <td>
+                <input name="INAme" [(ngModel)]="dynamicArray[i].Name" class="form-control" type="text" />
+                <!-- <input name="{{dynamicArray[i].Name}}" [(ngModel)]="dynamicArray[i].Name"     -->
+              </td>
+              <td>
+                <input [(ngModel)]="dynamicArray[i].Age" class="form-control" type="number" name="Age" />
+                <!-- <input name="{{dynamicArray[i].Age}}"  [(ngModel)]="dynamicArray[i].Age" class="form-control" type="number" required/>     -->
+              </td>
+              <td>
+                <input [(ngModel)]="dynamicArray[i].Gender" class="form-control" type="text" name="Gender" />
+                <!-- <input  name="{{dynamicArray[i].Gender}}"  [(ngModel)]="dynamicArray[i].Gender" class="form-control" type="text" required/>     -->
+              </td>
+              <td>
+                <input [(ngModel)]="dynamicArray[i].SeatNumber" class="form-control" type="text" name="SeatNumber" />
+                <!-- <input  name="{{dynamicArray[i].SeatNumber}}" [(ngModel)]="dynamicArray[i].SeatNumber" class="form-control" type="text" required/>     -->
+              </td>
+              <td>
+                <!-- <select name="{{dynamicArray[i].Seats}}" class="form-control" [(ngModel)]="dynamicArray[i].Seats" (change)="changeWebsite($event)">
+                                      <option *ngFor="let lseat of seatList" [ngValue]="lseat">
+                                      {{lseat}}
+                                    </option>
+                                    </select> -->
+                <select class="form-control" [(ngModel)]="dynamicArray[i].Seat" name="Seat">
+                  <option *ngFor="let lseat of seatList" [ngValue]="lseat">
+                    {{lseat}}
+                  </option>
+                </select>
+
+              </td>
+
+
+            </tr>
+            <!-- <tr>
+                              <td (click)="addRow()">
+                                <i class="fa fa-plus fa-2x"></i>
+                              </td></tr> -->
+            <tr>
+              <!-- <td (click)="addRow()">
+  <i class="fa fa-plus fa-2x"></i> 
+</td> -->
+              <td>
+                <button class="btn btn-default" type="button" (click)="addRow()">Add</button>
+              </td>
+              <td>
+                <input class="form-control" type="text" id="newDynamicName" [(ngModel)]="newDynamic.Name"
+                  name="newDynamicName" />
+              </td>
+              <td>
+                <input class="form-control" type="number" id="newDynamicAge" [(ngModel)]="newDynamic.Age"
+                  name="newDynamicAge" />
+              </td>
+              <td>
+                <input class="form-control" type="text" id="newDynamicGender" [(ngModel)]="newDynamic.Gender"
+                  name="newDynamicGender" />
+              </td>
+              <td>
+                <input class="form-control" type="text" id="newDynamicSeatNumber" [(ngModel)]="newDynamic.SeatNumber"
+                  name="newDynamicSeatNumber" />
+              </td>
+              <td>
+                <select class="form-control" [(ngModel)]="newDynamic.Seat" name="newDynamicSeat">
+                  <option *ngFor="let lseat of seatList" [ngValue]="lseat">
+                    {{lseat}}
+                  </option>
+                </select>
+                <!-- <input class="form-control" type="text" id="newDynamicAge" [(ngModel)]="newDynamic.Age" name="newDynamicAge" /> -->
+              </td>
+
+              <!-- <td>
+                                    <button class="btn btn-default" type="button" (click)="addRow()">Add</button>
+                                </td> -->
+            </tr>
+            <!-- <tr>
+                                <td (click)="addRow(i)">
+                                  <i class="fa fa-plus fa-2x"></i>
+                                </td>
+                              </tr>     -->
+          </tbody>
+        </table>
+        <!-- </div>     -->
+        <!-- </div> -->
+
+        <h3>Payment Details</h3>
+        
+        <table class="table">
+          <tr>
+            <td>Per Ticket Cost</td>
+            <td>{{priceperticket}}</td>
+          </tr>
+          <tr>
+            <td>Per Ticket Cost with tax</td>
+            <td>{{pricepertickettax}}</td>
+          </tr>
+          <tr>
+            <td>Discount code</td>
+            <td><input type="text" name="DiscountCode" #Discount />&nbsp;
+              <button type="button" class="btn btn-block" (click)=applyDiscount(Discount.value)>Apply</button>
+            </td>
+          </tr>
+          <tr>
+            <th>Amount to be Paid</th>
+            <td>{{amounttobePaid}}</td>
+          </tr>
+        </table>
+        <div>
+          <button type="submit" class="btn btn-block btn-success">Book Ticket</button> &nbsp;
+          <button type="submit" class="btn btn-block btn-success" [routerLink]="['/../userdashboard']">Cancel</button>
+        </div>
+      </form>
+      <!-- </div>
+        </div>   -->
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ import { ManageairlineService } from 'src/app/service/manageairline.service';
 import { map, Observable } from 'rxjs';
 import { HttpClient,HttpParams,HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-admindashoboard',
   templateUrl: './admindashoboard.component.html',
@@ -16,12 +17,24 @@ export class AdmindashoboardComponent implements OnInit {
   success:any;
   isblock:any;
   airlinesId: any;
-  constructor(public service:ManageairlineService,private toastr:ToastrService) { }
+  constructor(private router:Router,public service:ManageairlineService,private toastr:ToastrService) { }
 
   ngOnInit() {
     debugger
      this.service.getAllAirline().subscribe((data)=>this.listAirliness = data);
    
+  }
+  deleteAirne(id:number){
+    this.service.deleteAirline(id).subscribe(
+      (data)=>{
+        this.success =data;
+        if(this.success.apiresponse == true){
+          this.toastr.success("Deleted successfully"); 
+          }else{
+            this.toastr.error("Cannot Delete Airline"); 
+          }
+         this.service.getAllAirline().subscribe((data)=>this.listAirliness = data);
+      });
   }
   BlockAirline(data:Manageairline){
 this.isblock = data.IsBlocked;
@@ -42,6 +55,9 @@ this.isblock = data.IsBlocked;
     }
     );
    
+  }
+  Logout(){
+    this.router.navigate(['flightuser/login']);
   }
 
 }

@@ -23,10 +23,11 @@ export class ResgisterComponent implements OnInit {
       UserName: ['', [Validators.required]],    
       Age: ['', [Validators.required]],    
       Password: ['', [Validators.required]],    
-      EmailAddress: ['', [Validators.required]],    
+      EmailAddress: ['', [Validators.required,Validators.email]],    
       ContactNumber: ['', [Validators.required]],       
     });    
   }    
+  
    onFormSubmit()    
   {    debugger;
     const user = this.UserForm.value;    

@@ -1,0 +1,135 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/flightuser/userdashboard']">Home</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/flightuser/bookinghistory',userId]">Booking History</a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+<h4 style="margin-left: 35px;">Airline Details</h4>
+<div class="container-md" style="border-style:groove;padding: 10px;">
+    <div class="row" style="background-color:E6E7E8;">
+       
+            <div class="col" style="background-color:E6E7E8;">Airline Name</div>
+            <div class="col">{{airlinedetails.airlineName}}</div>
+       
+       </div>
+       <div class="row">
+            <div class="col">Contact Number</div>
+            <div class="col">{{airlinedetails.airlineContactNumber}}</div>
+        </div>
+            <div class="row">
+            <div class="col">Airline Address</div>
+            <div class="col">{{airlinedetails.airlineAddress}}</div>
+       </div>
+    </div>
+    <h4 style="margin-left: 35px;">Schedule Details</h4>
+    <div class="container" style="border-style:groove;padding: 10px;">
+        <div class="row">
+            <div class="col">Flight Number</div>
+            <div class="col">{{inventorydetails.flightNumber}}</div>
+       </div><div class="row">
+       
+            <div class="col">Airline Price</div>
+            <div class="col">{{inventorydetails.airlinePrice}}</div>
+       </div><div class="row">
+       
+            <div class="col">Total Cost</div>
+            <div class="col">{{inventorydetails.airlineTotalCost}}</div>
+        </div><div class="row">
+       
+            <div class="col">Pickup Location</div>
+            <div class="col">{{inventorydetails.fromPlace}}</div>
+       
+        </div><div class="row">
+            <div class="col">Drop Location</div>
+            <div class="col">{{inventorydetails.toPlace}}</div>
+       
+        </div><div class="row">
+            <div class="col">Start Date</div>
+            <div class="col">{{inventorydetails.airlineStartDate}}</div>
+       
+        </div><div class="row">
+            <div class="col">End Date</div>
+            <div class="col">{{inventorydetails.airlineEndDate}}</div>
+       
+        </div><div class="row">
+            <div class="col">Instrument used</div>
+            <div class="col">{{inventorydetails.instrumentUsed}}</div>
+       
+        </div><div class="row">
+            <div class="col">Businessclass Seats</div>
+            <div class="col">{{inventorydetails.totalBusinessClassSeats}}</div>
+       
+        </div><div class="row">
+            <div class="col">Non-Businessclass Seats</div>
+            <div class="col">{{inventorydetails.totalNonBusinessClassSeats}}</div>
+       
+        </div><div class="row">
+            <div class="col">Number of Rows</div>
+            <div class="col">{{inventorydetails.noOfRows}}</div>
+        </div><div class="row">
+       
+            <div class="col">Meal</div>
+            <div class="col">{{inventorydetails.meal}}</div>
+       </div>
+    </div>
+    <h4 style="margin-left: 35px;">Payment Details</h4>
+    <div class="container" style="border-style:groove;padding: 10px;">
+        <div class="row">
+            <div class="col">Booked Date</div>
+            <div class="col">{{historydetails.bookedDate}}</div>
+       </div><div class="row">
+       
+            <div class="col">Amount Paid</div>
+            <div class="col">{{historydetails.amountPaid}}</div>
+       </div><div class="row">
+       
+            <div class="col">Discount Applied</div>
+            <div class="col">{{historydetails.isdiscountApplied}}</div>
+        </div>
+        </div>
+        <h4 style="margin-left: 35px;">Passenger Details</h4>
+        <div class="container" style="border-style:groove;padding: 10px;">
+            
+        <div class="row">
+            
+       <div *ngFor="let a of historydetails.passengers">
+
+        <div class="container" style="border-style:groove;padding: 10px;">
+        <div class="row">
+            <div class="col">Passenger Name</div>
+            <div class="col">{{a.name}}</div>
+       
+        </div><div class="row">
+            <div class="col">Age</div>
+            <div class="col">{{a.age}}</div>
+       
+        </div><div class="row">
+            <div class="col">Gender</div>
+            <div class="col">{{a.gender}}</div>
+       
+        </div><div class="row">
+            <div class="col">Seat Number</div>
+            <div class="col">{{a.seatNumber}}</div>
+       
+        </div>
+
+        <div class="row">
+            <div class="col">Seat</div>
+            <div class="col">{{a.seat}}</div>
+        </div>
+        </div>
+       
+          
+       </div>
+    </div>
+

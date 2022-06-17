@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Manageinventory } from 'src/app/model/manageinventory.model';
 import { ManageinventoryService } from 'src/app/service/manageinventory.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-inventorydashboard',
@@ -25,3 +26,5 @@ export class InventorydashboardComponent implements OnInit {
   }
 
 }
+
+
