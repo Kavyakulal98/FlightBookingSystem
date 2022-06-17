@@ -29,15 +29,15 @@
       "DownstreamScheme": "http",
       "DownstreamHost": "localhost",
       "DownstreamPort": 5000,
-      "UPstreamPathTemplate": "/blockAirline/",
+      "UPstreamPathTemplate": "/blockAirline",
       "UpstreamMethod": "[Put]"
     },
     {
-      "DownstreamPathTemplate": "api/inventory/getAllInventory",
+      "DownstreamPathTemplate": "api/inventory/{id}/{value}",
       "DownstreamScheme": "http",
       "DownstreamHost": "localhost",
       "DownstreamPort": 5000,
-      "UPstreamPathTemplate": "/getAllInventory",
+      "UPstreamPathTemplate": "/getAllInventory/{id}/{value}",
       "UpstreamMethod": "[Get]"
     },
     {
@@ -119,7 +119,7 @@
       "DownstreamScheme": "http",
       "DownstreamHost": "localhost",
       "DownstreamPort": 9000,
-      "UPstreamPathTemplate": "/getBookinghistoryByEmailId/{id}/{value}",
+      "UPstreamPathTemplate": "/getBookinghistoryByuserId/{id}/{value}",
       "UpstreamMethod": "[Get]"
     },
     {
@@ -147,12 +147,12 @@
       "UpstreamMethod": "[Delete]"
     },
     {
-      "DownstreamPathTemplate": "api/searchFlight",
+      "DownstreamPathTemplate": "api/searchFlight/{airlinename}",
       "DownstreamScheme": "http",
       "DownstreamHost": "localhost",
       "DownstreamPort": 1234,
-      "UPstreamPathTemplate": "/searchFlight",
-      "UpstreamMethod": "[Get]"
+      "UPstreamPathTemplate": "/searchFlight/{airlinename}",
+      "UpstreamMethod": "[Post]"
     }
   ],
     

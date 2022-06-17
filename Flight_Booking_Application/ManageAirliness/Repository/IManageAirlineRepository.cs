@@ -1,4 +1,5 @@
 ﻿using ManageAirliness.Model;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ManageAirliness.Repository
         Airlines GetAirlinebyFlightId(int id);
         IEnumerable<Airlines> GetAllAirlines();
 
-        Airlines InsertAirline(Airlines airline);
+        bool InsertAirline(Airlines airline);
 
         bool DeleteAirlines(int id);
 

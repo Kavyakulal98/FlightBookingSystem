@@ -14,23 +14,47 @@ namespace ManageAirliness.Repository
         {
             this.context = _context;
         }
-        public IEnumerable<Inventory> GetAllInventory()
+        public IEnumerable<Inventory> GetAllInventory(int id, bool value)
         {
-            return context.InventoryofAirlines;
+            
+            try
+            {
+                return context.InventoryofAirlines.Where(m=>m.AirlinesId == id);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
         }
 
         public Inventory GetInventorybyId(int id)
         {
-            return context.InventoryofAirlines.Find(id);
+            
+            try
+            {
+                return context.InventoryofAirlines.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
         }
 
-        public Inventory InsertInventory(Inventory inv)
+        public bool InsertInventory(Inventory inv)
         {
-            context.InventoryofAirlines.Add(inv);
-            context.SaveChanges();
-            return inv;
+            try
+            {
+                context.InventoryofAirlines.Add(inv);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+           
         }
 
-       
+
     }
 }

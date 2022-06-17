@@ -1,3 +1,5 @@
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,73 +26,49 @@ namespace UserManagement
             Configuration = configuration;
         }
 
-       public string MyAllowSpecificOrigins;
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.Configure<CookiePolicyOptions>(options =>
-            //{
-            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-            //    options.CheckConsentNeeded = context => true;
-            //    options.MinimumSameSitePolicy = SameSiteMode.None;
-            //});
 
             services.AddDbContextPool<UserAppDBContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("AirlineDBConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            // services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
-            services.AddScoped<IUserRepository, SQLUserRepository>();
-            MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  policy =>
-                                  {
-                                      policy.WithOrigins("")
-                                      .AllowAnyOrigin()
-                                      .AllowAnyHeader()
-                                      .AllowAnyMethod();
 
-                                  });
-            });
-            //start jwt auth
+            services.AddScoped<IUserRepository, SQLUserRepository>();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
-                options.RequireHttpsMetadata = false;
-                options.SaveToken = true;
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = Configuration["Jwt:Audience"],
-                    ValidIssuer = Configuration["Jwt:Issuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
-                };
-            });
+                        options.RequireHttpsMetadata = false;
+                        options.SaveToken = true;
+                        options.TokenValidationParameters = new TokenValidationParameters()
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidAudience = Configuration["Jwt:Audience"],
+                            ValidIssuer = Configuration["Jwt:Issuer"],
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                        };
+                    });
             //end jwt auth
-           
+            services.AddAuthorization();
+            services.AddCors();
+
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCors(Options => Options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-            }
             app.UseMvcWithDefaultRoute();
-            //app.UseStaticFiles();
-            //app.UseCookiePolicy();
-            //jwt start
-            app.UseAuthentication();
-            // app.UseAuthorization();
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseMvc();
             //jwt end
             app.Run(async (context) =>
             {
@@ -101,3 +79,4 @@ namespace UserManagement
         }
     }
 }
+

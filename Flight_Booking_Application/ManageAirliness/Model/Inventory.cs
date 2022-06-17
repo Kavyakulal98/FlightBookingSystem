@@ -16,8 +16,8 @@ namespace ManageAirliness.Model
         public double AirlineTotalCost { get; set; }
         public string FromPlace { get; set; }
         public string ToPlace { get; set; }
-        public DateTime? AirlineStartDate { get; set; }
-        public DateTime? AirlineEndDate { get; set; }
+        public DateTime AirlineStartDate { get; set; }
+        public DateTime AirlineEndDate { get; set; }
         public string InstrumentUsed { get; set; }
         public int TotalBusinessClassSeats { get; set; }
         public int TotalNonBusinessClassSeats { get; set; }

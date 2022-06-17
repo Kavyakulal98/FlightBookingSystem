@@ -24,21 +24,24 @@ namespace FlightSearchManagement.Controller
             sFlight = _inventory;
         }
         // GET: api/<SearchFlightController>
-        [HttpGet]
-        public IActionResult Get([FromBody]JObject data)
+        [HttpPost("{airlinename}")]
+        public IEnumerable<Inventory> Post(string airlinename, [FromBody] Inventory inv)
         {
-            string airlinename = data["airlineName"].ToString();
+            //string airlinename = data["airlineName"].ToString();JObject data
             int airlineId = sFlight.GetAirlineIdbyName(airlinename);
-            Inventory inv = data["inventory"].ToObject<Inventory>();
-            IEnumerable<Inventory> flights = sFlight.SearchAirline(airlineId, inv.AirlineStartDate, inv.FromPlace, inv.ToPlace);           
-            if (flights != null)
-            {
-                return Ok(flights); 
-            }
-            else
-            {
-                return NotFound("No Records Found");
-            }
+            //Inventory inv = data["inventory"].ToObject<Inventory>();
+            //IEnumerable<Inventory> flights = new Inventory();
+            //DateTime myDateTime = (DateTime)inv.AirlineStartDate;
+            //string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            return sFlight.SearchAirline(airlineId, inv.AirlineStartDate, inv.FromPlace, inv.ToPlace);           
+            //if (flights != null)
+            //{
+                //return flights;
+            //}
+            //else
+            //{
+            //    return NotFound("No Records Found");
+            //}
         }
 
         // POST api/<SearchFlightController>

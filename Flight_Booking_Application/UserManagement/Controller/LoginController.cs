@@ -36,12 +36,12 @@ namespace UserManagement.Controller
                 User loggedUser = await user.Login(_userData.UserName, _userData.Password);
                 if (loggedUser != null)
                 {
-                    return Ok(new { response=generateToken(loggedUser),success=1 });
+                    return Ok(new { response=generateToken(loggedUser),user= new{ userId = loggedUser.UserId, username = loggedUser.UserName , role = loggedUser.Role} });
                    
                 }
                 else
                 {
-                    return BadRequest(new {  success = 0});
+                    return Ok(new {  success = 0});
                 }
             }
             else
@@ -66,7 +66,8 @@ namespace UserManagement.Controller
                         new Claim("UserId", loggedUser.UserId.ToString()),
                        // new Claim("DisplayName", loggedUser.DisplayName),
                         new Claim("UserName", loggedUser.UserName),
-                        new Claim("Email", loggedUser.EmailAddress)
+                        new Claim("Email", loggedUser.EmailAddress),
+                        new Claim("Role", loggedUser.Role)
                     };
 
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -75,7 +76,7 @@ namespace UserManagement.Controller
                         _configuration["Jwt:Issuer"],
                         _configuration["Jwt:Audience"],
                         claims,
-                        expires: DateTime.UtcNow.AddMinutes(10),
+                        expires: DateTime.UtcNow.AddMinutes(180),
                         signingCredentials: signIn);
             return new JwtSecurityTokenHandler().WriteToken(token);
             //return Ok(new JwtSecurityTokenHandler().WriteToken(token));

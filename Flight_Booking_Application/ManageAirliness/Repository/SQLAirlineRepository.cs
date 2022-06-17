@@ -1,4 +1,5 @@
 ﻿using ManageAirliness.Model;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,54 +16,99 @@ namespace ManageAirliness.Repository
             this.context = _context;
         }
 
-        public Airlines InsertAirline(Airlines airline)
+        public bool InsertAirline(Airlines airline)
         {
-            context.AirlinesDetails.Add(airline);
-            context.SaveChanges();
-            return airline;
+            try { 
+            Airlines existingairline = new Airlines();
+            existingairline = context.AirlinesDetails.Where(m => m.AirlineName == airline.AirlineName).SingleOrDefault();
+            if (existingairline != null)
+            {
+                return false;
+            }
+            else
+            {
+                context.AirlinesDetails.Add(airline);
+                context.SaveChanges();
+                return true;
+            }
+
+        }
+            catch(Exception ex)
+            {
+                throw(ex);
+            }
         }
 
         public Airlines GetAirlinebyFlightId(int airlineId)
         {
+            try { 
             return context.AirlinesDetails.Find(airlineId);
+            }
+            catch(Exception ex)
+            {
+                throw(ex);
+            }
         }
 
         public IEnumerable<Airlines> GetAllAirlines()
         {
-            return context.AirlinesDetails;
+            try { 
+                return context.AirlinesDetails; 
+            }
+            catch(Exception ex)
+            {
+                throw(ex);
+            }
+            
         }
         public bool DeleteAirlines(int id)
         {
-            Airlines flight = context.AirlinesDetails.Find(id);
-            var allInventories = context.InventoryofAirlines.Where(a => a.AirlinesId == id);
-            if (flight != null)
-            {
-                context.AirlinesDetails.Remove(flight);
-                context.SaveChanges();
-                if (allInventories != null)
+            try {
+                Airlines flight = new Airlines();
+                flight = context.AirlinesDetails.Find(id);
+                IEnumerable<Inventory> allInventories = context.InventoryofAirlines.Where(a => a.AirlinesId == id);
+                if (flight != null)
                 {
-                    foreach (var inventory in allInventories)
+                    context.AirlinesDetails.Remove(flight);
+                    context.SaveChanges();
+                    if (allInventories != null)
                     {
-                        context.InventoryofAirlines.Remove(inventory);
+                        foreach (var inventory in allInventories)
+                        {
+                            context.InventoryofAirlines.Remove(inventory);
+                        }
+
                     }
-                    
+                    return true;
+
                 }
-                return true;
-                
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch
             {
                 return false;
             }
+            
         }
 
         public bool BlockAirlines(Airlines blockedAirline)
         {
-            var employee = context.AirlinesDetails.Attach(blockedAirline);
-            context.Entry(blockedAirline).Property(a => a.IsBlocked).IsModified = true;
-            // employee.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            context.SaveChanges();
-            return true;
+            blockedAirline.IsBlocked = blockedAirline.IsBlocked == true ? false : true;
+            try {
+                var employee = context.AirlinesDetails.Attach(blockedAirline);
+                context.Entry(blockedAirline).Property(a => a.IsBlocked).IsModified = true;
+                // employee.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
         }
     }
 }

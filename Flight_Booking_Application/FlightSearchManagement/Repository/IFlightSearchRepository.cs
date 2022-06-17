@@ -8,7 +8,7 @@ namespace FlightSearchManagement.Repository
 {
    public interface IFlightSearchRepository
     {
-        IEnumerable<Inventory> SearchAirline(int airlineId, DateTime? travellDate, string pickupLocation, string dropLocation);
+        IEnumerable<Inventory> SearchAirline(int airlineId, DateTime travellDate, string pickupLocation, string dropLocation);
         int GetAirlineIdbyName(string name);
     }
 }

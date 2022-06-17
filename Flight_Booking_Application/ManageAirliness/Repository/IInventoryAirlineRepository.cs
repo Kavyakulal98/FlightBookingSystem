@@ -9,8 +9,8 @@ namespace ManageAirliness.Repository
     public interface IInventoryAirlineRepository
     {
         Inventory GetInventorybyId(int id);
-        IEnumerable<Inventory> GetAllInventory();
-        Inventory InsertInventory(Inventory inv);
+        IEnumerable<Inventory> GetAllInventory(int id, bool value);
+        bool InsertInventory(Inventory inv);
         
     }
 }

@@ -12,6 +12,12 @@ namespace UserFlightBooking.Model
         public string Name { get; set; }
         public string Gender { get; set; }
         public int Age { get; set; }
+        public string SeatNumber { get; set; }
+        //public string MealOpted { get; set; }
+        //public int NoofSelctedBusinessclassSeats { get; set; }
+        //public int NoofSelctedNonBusinessclassSeats { get; set; }
+        public string Seat { get; set; }
+        public int SeatCount { get; set; }
         public int FlightBookingId { get; set; }
         //[ForeignKey("FlightBookingId")]
         //public FlightBooking FlightBooking { get; set; }

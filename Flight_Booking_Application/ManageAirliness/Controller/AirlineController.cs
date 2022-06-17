@@ -1,5 +1,6 @@
 ﻿using ManageAirliness.Model;
 using ManageAirliness.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,10 @@ using System.Threading.Tasks;
 
 namespace ManageAirliness.Controller
 {
+   
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class AirlineController : ControllerBase
     {
         private IManageAirlineRepository airline;
@@ -24,10 +27,9 @@ namespace ManageAirliness.Controller
         [Route("getAllAirline")]
         public IEnumerable<Airlines> Get()
         {
-            return airline.GetAllAirlines();
-        }
-        
+            return airline.GetAllAirlines().ToList();
 
+        }
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
         public Airlines Get(int id)
@@ -39,23 +41,24 @@ namespace ManageAirliness.Controller
         // POST api/<ValuesController>
         [HttpPost]
        [Route("insertAirline")]
-        public void Post([FromBody] Airlines airlines)
+        public IActionResult Post([FromBody] Airlines airlines)
         {
-            airline.InsertAirline(airlines);
+            bool apiresponse=airline.InsertAirline(airlines);
+            return Ok(new{ apiresponse= apiresponse });
         }
        
         // PUT api/<ValuesController>/5
         [HttpPut]
-        public void Put([FromBody] Airlines airlines)
+        public IActionResult Put([FromBody] Airlines airlines)
         {
-            airline.BlockAirlines(airlines);
+            return Ok(new {apiresponse= airline.BlockAirlines(airlines) });
         }
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            airline.DeleteAirlines(id);
+            return Ok(new { apiresponse = airline.DeleteAirlines(id) }) ;
         }
     }
 }

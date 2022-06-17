@@ -9,9 +9,9 @@ namespace UserFlightBooking.Repository
    public interface IFlightBookingRepository
     {
         FlightBooking GetBookingInfoByPnr(int pnrId);
-      // IEnumerable<FlightBooking> GetBookingHistoryByEmailId(string emailId,bool value);
+       IEnumerable<FlightBooking> GetBookingHistoryByuserId(int userId,bool value);
 
-        FlightBooking BookFlightbyUser(FlightBooking bookingDetails);
+        bool BookFlightbyUser(FlightBooking bookingDetails);
         bool CancelBookingbyPnr(int pnrId);
     }
 }

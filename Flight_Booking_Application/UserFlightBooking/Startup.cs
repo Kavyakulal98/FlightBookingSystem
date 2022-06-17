@@ -1,3 +1,5 @@
+
+using BaselineTypeDiscovery;
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using UserFlightBooking.Repository;
@@ -42,8 +45,11 @@ namespace UserFlightBooking
             // services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
             services.AddScoped<IFlightBookingRepository, SQLFlightBookingRepository>();
             services.AddCors();
+            //CustomAssemblyLoadContext context = new CustomAssemblyLoadContext();
+            //context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "libwkhtmltox.dll"));
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
-
+            //var context = new CustomAssemblyLoadContext();
+            //context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "libwkhtmltox.dll"););
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

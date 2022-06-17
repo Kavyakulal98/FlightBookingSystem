@@ -25,10 +25,12 @@ namespace UserFlightBooking.Model
         //[ForeignKey("UserId")]
         //public virtual User Usewr { get; set; }
         public virtual IEnumerable<PassengerDetails> Passengers { get; set; }
-        public string MealOpted { get; set; }
-        public int NoofSelctedBusinessclassSeats { get; set; }
-        public int NoofSelctedNonBusinessclassSeats { get; set; }
+        //public string MealOpted { get; set; }
+        //public int NoofSelctedBusinessclassSeats { get; set; }
+        //public int NoofSelctedNonBusinessclassSeats { get; set; }
         public DateTime BookedDate { get; set; }
+        public double amountPaid { get; set; }
 
+        public bool isdiscountApplied { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace UserManagement.Repository
 
        Task<User> Login(string username, string password);
 
-        User RegisterUser(User user);
+        bool RegisterUser(User user);
 
         
     }

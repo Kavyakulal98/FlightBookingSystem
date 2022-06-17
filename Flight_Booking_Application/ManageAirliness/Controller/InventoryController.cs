@@ -1,10 +1,14 @@
-﻿using ManageAirliness.Model;
+﻿using DinkToPdf;
+using ManageAirliness.Model;
 using ManageAirliness.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using DinkToPdf.Contracts;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,27 +19,28 @@ namespace ManageAirliness.Controller
     public class InventoryController : ControllerBase
     {
         private IInventoryAirlineRepository inventory;
+        
 
-      //  public IManageAirlineRepository airline;
+        //  public IManageAirlineRepository airline;
         public InventoryController(IInventoryAirlineRepository _inventory)
         {
-            inventory = _inventory;
-        }
+            inventory = _inventory;  
+    }
         //public InventoryController(IManageAirlineRepository _airline)
         //{
         //    airline = _airline;
         //}
         // GET: api/<InventoryController>
-        [HttpGet]
-        [Route("getAllInventory")]
-        public IEnumerable<Inventory> Get()
+        [HttpGet("{id}/{value}")]
+        // [Route("getAllInventory")]
+        public IEnumerable<Inventory> Get(int id, bool value)
         {
-            return inventory.GetAllInventory();
+            return inventory.GetAllInventory(id, value);
         }
 
         // GET api/<InventoryController>/5
         [HttpGet("{id}")]
-      //  [Route("getAirlinebyId")]
+        //  [Route("getAirlinebyId")]
         public Inventory Get(int id)
         {
             return inventory.GetInventorybyId(id);
@@ -43,12 +48,12 @@ namespace ManageAirliness.Controller
 
         // POST api/<InventoryController>
         [HttpPost]
-        [Route("insertInventory")] 
-        public void Post([FromBody] Inventory inv)
+        [Route("insertInventory")]
+        public IActionResult Post([FromBody] Inventory inv)
         {
-            inventory.InsertInventory(inv);
+            return Ok(new { apiresponse = inventory.InsertInventory(inv) });
         }
-       
+
 
 
         // PUT api/<InventoryController>/5
@@ -61,6 +66,12 @@ namespace ManageAirliness.Controller
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+
         }
+
+
+     
     }
 }
+
+

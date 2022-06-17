@@ -45,12 +45,21 @@ namespace UserManagement.Repository
 
         //}
 
-        public User RegisterUser(User user)
+        public bool RegisterUser(User user)
         {
-          
+            User existinguser = new User();
+            existinguser=context.UserDetails.Where(m => m.EmailAddress == user.EmailAddress).SingleOrDefault();
+            if (existinguser != null){
+                return false;
+            }
+            else
+            {
                 context.UserDetails.Add(user);
                 context.SaveChanges();
-                return user;
+                //return user;
+                return true;
+            }
+               
          
 
         }

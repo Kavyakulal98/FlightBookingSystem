@@ -12,7 +12,7 @@ using UserManagement.Repository;
 
 namespace UserManagement.Controller
 {
-    [Authorize(AuthenticationSchemes ="Bearer")]
+    //[Authorize(AuthenticationSchemes ="Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -33,17 +33,18 @@ namespace UserManagement.Controller
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public User Get(int id)
         {
-            User presentUser = user.GetUserbyUserId(id);
-            if(presentUser == null)
-            {
-                return NotFound("UserDetails does not exist");
-            }
-            else
-            {
-                return Ok(presentUser);
-            }
+            User presentUser = new User();
+            presentUser = user.GetUserbyUserId(id);
+            //if(presentUser == null)
+            //{
+            //    return Ok("UserDetails does not exist");
+            //}
+            //else
+            //{
+                return presentUser;
+           // }
         }
 
         //// GET api/<UserController>/5
@@ -65,9 +66,10 @@ namespace UserManagement.Controller
         [AllowAnonymous]
         [HttpPost]
         [Route("registerUser")]
-        public void Post([FromBody] User userdetail)
+        public IActionResult Post([FromBody] User userdetail)
         {
-            user.RegisterUser(userdetail);
+            bool message = user.RegisterUser(userdetail);
+            return Ok(new { apiresponse = message });
         }
 
         // PUT api/<UserController>/5
